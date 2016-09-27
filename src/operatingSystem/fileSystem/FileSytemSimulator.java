@@ -51,12 +51,11 @@ public class FileSytemSimulator extends javax.swing.JFrame {
         setBackground(new java.awt.Color(1, 1, 1));
 
         txtCommand.setBackground(new java.awt.Color(0, 0, 0));
-        txtCommand.setFont(new java.awt.Font("Courier New", 0, 14));
+        txtCommand.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
         txtCommand.setForeground(new java.awt.Color(255, 255, 255));
         txtCommand.setText("aluno@localhost:~$");
         txtCommand.setCaretColor(new java.awt.Color(255, 255, 255));
         txtCommand.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtCommand.setSelectedTextColor(new java.awt.Color(255, 255, 255));
         txtCommand.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCommandKeyPressed(evt);
@@ -69,10 +68,9 @@ public class FileSytemSimulator extends javax.swing.JFrame {
         textArea.setBackground(new java.awt.Color(0, 0, 0));
         textArea.setColumns(20);
         textArea.setEditable(false);
-        textArea.setFont(new java.awt.Font("Courier New", 0, 14));
+        textArea.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
         textArea.setForeground(new java.awt.Color(255, 255, 255));
         textArea.setRows(5);
-        textArea.setSelectedTextColor(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(textArea);
 
         jScrollPane3.setViewportView(jScrollPane1);
@@ -224,7 +222,10 @@ public class FileSytemSimulator extends javax.swing.JFrame {
             }    
             else if( args[0].equals("info") ){
                 this.lastResult = this.myKernel.info();
-            }   
+            }
+            else if ( args[0].equals("exit") ){
+                this.lastResult = this.myKernel.exit();
+            }
             //se o comando não é reconhecido
             else{
                 this.lastResult = comando + ": Comando invalido.";

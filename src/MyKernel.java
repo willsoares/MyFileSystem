@@ -1,8 +1,20 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright 2016 Willian Soares.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
+import java.io.File;
 import operatingSystem.Kernel;
 
 /**
@@ -16,7 +28,7 @@ import operatingSystem.Kernel;
  */
 public class MyKernel implements Kernel{
     
-    
+    private File dir;
     public MyKernel(){
 
     }
@@ -49,7 +61,7 @@ public class MyKernel implements Kernel{
         return result;
     }
 
-    public String cd(String parameters) {
+    public String cd(String parameters){
         //variavel result deverah conter o que vai ser impresso na tela apos comando do usuário
         String result = "";
         String currentDir = "";
@@ -57,11 +69,19 @@ public class MyKernel implements Kernel{
         System.out.println("\tParametros: " + parameters);
         
         //inicio da implementacao do aluno
+        String path = parameters;
         
-        
-        //indique o diretório atual. Por exemplo... /
         currentDir = "/";
         
+        if(!path.isEmpty()){
+            dir = new File(currentDir + path);
+            if (dir.isDirectory()){
+                currentDir = currentDir.concat(path);
+            }
+            else{
+                result = "Not a directory";
+            }
+        }
         //setando parte gráfica do diretorio atual
         operatingSystem.fileSystem.FileSytemSimulator.currentDir = currentDir;
         
@@ -182,9 +202,9 @@ public class MyKernel implements Kernel{
         System.out.println("\tParametros: sem parametros" );
         
         //nome do aluno
-        String name = "Fulano da Silva";
+        String name = "Willian de Souza Soares";
         //numero de matricula
-        String registration = "2001.xx.yy.00.11";
+        String registration = "2014.1.08.034";
         //versao do sistema de arquivos
         String version = "0.1";
                 
@@ -193,6 +213,11 @@ public class MyKernel implements Kernel{
         result += "\nVersao do Kernel:     " + version;
                        
         return result;
+    }
+    
+    public String exit(){
+        System.exit(0);
+        return "bye";
     }
 
 }

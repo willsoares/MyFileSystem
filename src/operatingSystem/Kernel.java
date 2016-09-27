@@ -93,6 +93,12 @@ public interface Kernel {
      * Função para indicar informacoes do simulador.
      * @return String que é impressa no terminal.
      */
-    public String info();        
+    public String info();      
+    
+    /**
+     * Função para sair do simulador
+     * @return String que é impressa no terminal.
+     */
+    public String exit();
             
 }
