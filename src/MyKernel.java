@@ -12,7 +12,7 @@ import operatingSystem.Kernel;
  * - Filas;
  * - Pilhas;
  * - etc...
- * @author nome do aluno...
+ * @author Willian Soares
  */
 public class MyKernel implements Kernel{
     
@@ -20,6 +20,7 @@ public class MyKernel implements Kernel{
     public MyKernel(){
 
     }
+    
 
     public String ls(String parameters) {
         //variavel result deverah conter o que vai ser impresso na tela apos comando do usuário
