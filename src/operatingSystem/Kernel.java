@@ -100,5 +100,7 @@ public interface Kernel {
      * @return String que é impressa no terminal.
      */
     public String exit();
+    
+    public String dump(String parameters);
             
 }

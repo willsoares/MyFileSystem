@@ -130,6 +130,11 @@ public class FileSytemSimulator extends javax.swing.JFrame {
     private String lastResult = "";
     private String base = "aluno@localhost:";
     public static String currentDir = "/";
+    public void setBase(String base){
+        this.base = base;
+    }
+    private String comandos[];
+    private String conteudo = "";
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
@@ -213,24 +218,40 @@ public class FileSytemSimulator extends javax.swing.JFrame {
                 else
                     this.lastResult = this.myKernel.cat("");
             }              
-            //se comando for "createfile"
+            //se comando for "batch"
             else if( args[0].equals("batch") ){
-                if( args.length != 1)
-                    this.lastResult = this.myKernel.batch(comando.trim().substring(6, comando.trim().length()));
+                if( args.length != 1){
+                    this.conteudo = this.myKernel.batch(comando.trim().substring(6, comando.trim().length()));
+                    this.conteudo = this.conteudo.replace("\\n", "¬");
+                    this.comandos = conteudo.split("¬");
+                    System.out.println(this.comandos.length);
+                    for(String cmd: comandos){
+                        this.dispararComando(cmd);
+                    }
+                }
                 else
                     this.lastResult = this.myKernel.batch("");
-            }    
+            }
+            //se comando for "dump"
+            else if( args[0].equals("dump") ){
+                if( args.length != 1){
+                    this.lastResult = this.myKernel.dump(comando.trim().substring(5, comando.trim().length()));
+                }
+                else
+                    this.lastResult = this.myKernel.batch("");
+            }
             else if( args[0].equals("info") ){
                 this.lastResult = this.myKernel.info();
             }
-            else if ( args[0].equals("exit") ){
+            else if( args[0].equals("exit") ){
                 this.lastResult = this.myKernel.exit();
-            }
+            } 
             //se o comando não é reconhecido
             else{
                 this.lastResult = comando + ": Comando invalido.";
             }
         }
+    
     }
 
     private void escreverDiretorio(){
